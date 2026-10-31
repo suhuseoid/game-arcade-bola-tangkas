@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0420">
+  <title>Bola Tangkas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Rubik:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <canvas id="fx" aria-hidden="true"></canvas>
+
+  <main class="machine" id="machine">
+    <div class="side">
+    <header class="top">
+      <h1 class="title"><span>BOLA</span> <span>TANGKAS</span></h1>
+      <div class="tools">
+        <button class="tool" id="btnMusic" aria-pressed="true" title="Musik">♫</button>
+        <button class="tool" id="btnSfx" aria-pressed="true" title="Efek suara">🔊</button>
+        <button class="tool" id="btnSize" aria-pressed="false" title="Perbesar huruf">A+</button>
+        <button class="tool" id="btnFull" title="Layar penuh" hidden>⛶</button>
+        <button class="tool" id="btnRules" title="Cara main">?</button>
+      </div>
+    </header>
+
+    <div class="mode" role="group" aria-label="Mode permainan">
+      <button class="mode-btn" id="modeJoker" aria-pressed="true">★ PAKAI JOKER</button>
+      <button class="mode-btn" id="modeClassic" aria-pressed="false">TANPA JOKER</button>
+    </div>
+
+    <section class="paytable" id="paytable" aria-label="Tabel bayaran"></section>
+    </div>
+
+    <div class="main">
+
+    <section class="table">
+      <div class="cards" id="cards" aria-live="polite"></div>
+      <div class="double" id="doublePanel" hidden>
+        <div class="double-text">
+          <strong>DOUBLE <em id="doubleLevel"></em></strong>
+          <span>Tebak kartu berikut: <b>KECIL</b> (A–6) atau <b>BESAR</b> (8–K). Kartu 7 = seri.</span>
+        </div>
+        <div class="card-slot" id="doubleCard"></div>
+      </div>
+    </section>
+
+    <p class="message" id="message" role="status">Pasang taruhan lalu tekan MAIN</p>
+
+    <section class="stats">
+      <div class="stat"><span>KREDIT</span><b id="credits">0</b></div>
+      <div class="stat"><span>TARUHAN</span><b id="bet">0</b></div>
+      <div class="stat win"><span>MENANG</span><b id="win">0</b></div>
+    </section>
+
+    <section class="controls" id="controls"></section>
+    <p class="hint">Keyboard: <kbd>Enter</kbd> tombol utama · <kbd>↑</kbd> <kbd>↓</kbd> taruhan · <kbd>←</kbd> <kbd>→</kbd> Kecil/Besar</p>
+    </div>
+  </main>
+
+  <dialog id="rules">
+    <form method="dialog">
+      <h2>Cara Main</h2>
+      <ol>
+        <li>Atur <b>TARUHAN</b> dengan tombol <b>−</b> / <b>+</b>, lalu tekan <b>MAIN</b>.</li>
+        <li>Kamu dapat <b>5 kartu terbuka</b>. Lihat kartunya, lalu pilih:
+          <ul>
+            <li><b>TAMBAH</b>: taruhan jadi 2× sebelum 2 kartu terakhir dibuka.</li>
+            <li><b>BUKA</b>: buka 2 kartu terakhir tanpa tambah taruhan.</li>
+          </ul>
+        </li>
+        <li>Dari <b>7 kartu</b> diambil <b>5 kartu terbaik</b>. Kalau kombinasinya ada di tabel, kamu menang <b>taruhan × pengali</b>.</li>
+        <li>Ada dua mode. <b>PAKAI JOKER</b>: dek 53 kartu, <b>JOKER</b> bisa jadi kartu apa saja (bisa membentuk <b>Five of a Kind</b>). <b>TANPA JOKER</b>: dek 52 kartu, kombinasi besar lebih jarang tapi bayarannya lebih tinggi.</li>
+        <li>Kalau menang, pilih <b>AMBIL</b> (masuk kredit) atau <b>DOUBLE</b>: tebak kartu berikut <b>KECIL</b> (A–6) atau <b>BESAR</b> (8–K). Benar = kemenangan 2×, salah = hangus, kartu 7 = seri. Maksimal 5× double.</li>
+      </ol>
+      <p class="note">Permainan hiburan. Kredit tidak bernilai uang dan tidak bisa ditukar.</p>
+      <button class="btn primary" value="close">MENGERTI</button>
+    </form>
+  </dialog>
+
+  <script src="js/engine.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
